@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Onema\BaseApiBundle\Repository;
+namespace Onema\ExampleApiBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -24,7 +24,7 @@ class ProductRepository extends EntityRepository
         $em = $this->getEntityManager();
         $queryBuilder = $em->createQueryBuilder('product');
         $products = $queryBuilder->select('product')
-            ->from('BaseApiBundle:Product', 'product')
+            ->from('ExampleApiBundle:Product', 'product')
             ->orderBy('product.name', 'DESC')
             ->getQuery()
             ->getResult();
@@ -35,7 +35,7 @@ class ProductRepository extends EntityRepository
     {
         $em = $this->getEntityManager();
         $query = $em->createQuery('
-            SELECT p, c FROM BaseApiBundle:Product p
+            SELECT p, c FROM ExampleApiBundle:Product p
             JOIN p.category c
             WHERE p.id = :id'
         )->setParameter('id', $id);
@@ -62,7 +62,7 @@ class ProductRepository extends EntityRepository
         $to = $from + $limit;
         
         $em = $this->getEntityManager();
-        $query = $em->createQuery('SELECT p FROM BaseApiBundle:Product p')
+        $query = $em->createQuery('SELECT p FROM ExampleApiBundle:Product p')
             ->setFirstResult($from)
             ->setMaxResults($to);
         

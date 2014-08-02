@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Onema\BaseApiBundle\Entity;
+namespace Onema\ExampleApiBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +16,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;  //Ver 0.11+ the namespace has ch
 use JMS\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass="Onema\BaseApiBundle\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="Onema\ExampleApiBundle\Repository\ProductRepository")
  * @ORM\Table(name="product")
  * @ORM\HasLifecycleCallbacks()
  */

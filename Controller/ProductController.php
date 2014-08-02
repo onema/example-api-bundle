@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Onema\BaseApiBundle\Controller;
+namespace Onema\ExampleApiBundle\Controller;
 
 //Use annotations for our FOSRest config
 use Symfony\Component\HttpFoundation\Request;
@@ -16,20 +16,20 @@ use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\Rest\Util\Codes;
 
 use Onema\BaseApiBundle\EventListener\RepositoryActionListener;
-use Onema\BaseApiBundle\Entity\Product;
-use Onema\BaseApiBundle\Form\Type\ProductType;
+use Onema\ExampleApiBundle\Entity\Product;
+use Onema\ExampleApiBundle\Form\Type\ProductType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 
 /**
  * Prototype controller to test base api controller.
  * 
- * @package Onema\BaseApiBundle\Controller
+ * @package Onema\ExampleApiBundle\Controller
  */
 class ProductController extends BaseApiController implements ClassResourceInterface
 {
     public function __construct() {
         parent::__construct();
-        $this->defaultRepository = 'BaseApiBundle:Product';
+        $this->defaultRepository = 'ExampleApiBundle:Product';
         $this->defaultDataStore = 'doctrine';
     }
     
@@ -40,7 +40,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
      * @ApiDoc(
      *  resource=true,
      *  description="Create a new Object",
-     *  input="Onema\BaseApiBundle\Form\Type\ProductType",
+     *  input="Onema\ExampleApiBundle\Form\Type\ProductType",
      *  output="",
      *  statusCodes={
      *         201="Returned when successful",
@@ -62,7 +62,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
      * @ApiDoc(
      *  description="Update Object",
      *  input={
-     *      "class"="Onema\BaseApiBundle\Form\Type\ProductType",
+     *      "class"="Onema\ExampleApiBundle\Form\Type\ProductType",
      *      "groups"={"update"}
      *  },
      *  output="Your\Namespace\Class",
@@ -109,7 +109,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
      * ```
      * $listener = new CustomActionListener($method, $parameters);
      * $this->dispatcher->addListener(parent::API_GET, array($listener, 'onFindOne'));
-     * $products = $this->processData('BaseApiBundle:Product', 'doctrine_mongodb');
+     * $products = $this->processData('ExampleApiBundle:Product', 'doctrine_mongodb');
      * ```
      * 
      * Create a custom serialized response like this:
@@ -121,7 +121,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
      * @ApiDoc(
      *  description="PUT method to create a product",
      *  output={
-     *      "class"="Onema\BaseApiBundle\Entity\Product",
+     *      "class"="Onema\ExampleApiBundle\Entity\Product",
      *      "groups"={"public"}
      *  }
      * )
@@ -143,7 +143,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
      * @ApiDoc(
      *  description="get a resource by id",
      *  output={
-     *      "class"="Onema\BaseApiBundle\Entity\Product",
+     *      "class"="Onema\ExampleApiBundle\Entity\Product",
      *      "groups"={"public"}
      *  }
      * )
@@ -171,7 +171,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
      * @ApiDoc(
      *  description="get a resource by id",
      *  output={
-     *      "class"="Onema\BaseApiBundle\Entity\Product",
+     *      "class"="Onema\ExampleApiBundle\Entity\Product",
      *      "groups"={"date"}
      *  }
      * )
@@ -185,7 +185,7 @@ class ProductController extends BaseApiController implements ClassResourceInterf
         $listener = new RepositoryActionListener('findPaginated', $parameters);
         $this->dispatcher->addListener(parent::API_GET, array($listener, 'onFindCollection'));
 
-        $products = $this->processData('BaseApiBundle:Product', 'doctrine');
+        $products = $this->processData('ExampleApiBundle:Product', 'doctrine');
 
         return array(
             'products' => $products,
